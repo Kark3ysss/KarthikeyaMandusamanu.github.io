@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Karthikeya Mandusamanu — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --ink: #1A1916;
+    --ink-muted: #6B6860;
+    --ink-faint: #9A9890;
+    --accent: #1B4F72;
+    --accent-light: #D6E8F5;
+    --accent2: #C0392B;
+    --border: rgba(26,25,22,0.10);
+    --border-strong: rgba(26,25,22,0.18);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --radius-sm: 6px;
+    --shadow: 0 2px 12px rgba(26,25,22,0.07);
+    --shadow-hover: 0 6px 28px rgba(26,25,22,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: calc(100vh - 60px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-text h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-text p {
+    font-size: 17px;
+    color: var(--ink-muted);
+    max-width: 420px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: #FFF;
+  }
+  .btn-primary:hover { background: #333; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--border-strong);
+  }
+  .btn-outline:hover { background: var(--surface); transform: translateY(-1px); }
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .stat-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tag-cloud {
+    background: var(--accent);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    background: rgba(255,255,255,0.15);
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--ink-muted);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-copy p {
+    color: var(--ink-muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .about-copy p strong { color: var(--ink); font-weight: 600; }
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .info-row .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); font-weight: 500; }
+  .info-row .value { font-size: 14px; color: var(--ink); font-weight: 500; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+  .exp-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .exp-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .exp-company {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--ink-muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .exp-meta { text-align: right; }
+  .exp-date {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .exp-location {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    text-align: right;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+  .project-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .project-company {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+  .ptag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--bg);
+    color: var(--ink-muted);
+    border: 1px solid var(--border);
+    letter-spacing: 0.03em;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .contact-heading {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    color: #FFF;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .contact-heading em { color: rgba(255,255,255,0.55); font-style: italic; }
+  .contact-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-item:hover { background: rgba(255,255,255,0.12); }
+  .contact-item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .contact-item-text { flex: 1; }
+  .contact-item-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.45); font-weight: 500; }
+  .contact-item-value { font-size: 14px; color: #FFF; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 13px;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--border);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem 2rem; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; }
+    .exp-meta { text-align: left; }
+    .exp-location { text-align: left; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .contact-wrap { padding: 2.5rem 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text h1 { animation: fadeUp 0.7s ease both; }
+  .hero-text p  { animation: fadeUp 0.7s 0.12s ease both; }
+  .hero-cta     { animation: fadeUp 0.7s 0.22s ease both; }
+  .hero-visual  { animation: fadeUp 0.7s 0.32s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">KM</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Karthikeya<br><em>Mandusamanu</em></h1>
+    <p>Product strategist, growth consultant, and operations leader. I turn ambiguous data into clear decisions — and clear decisions into measurable impact.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">See My Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">1,000+</div>
+        <div class="stat-label">Survey Respondents</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$50K+</div>
+        <div class="stat-label">Finances Managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Events Coordinated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Companies Advised</div>
+      </div>
+    </div>
+    <div class="tag-cloud">
+      <span class="tag">Product Strategy</span>
+      <span class="tag">CRM & HubSpot</span>
+      <span class="tag">User Research</span>
+      <span class="tag">Data Analytics</span>
+      <span class="tag">SEO</span>
+      <span class="tag">Operations</span>
+      <span class="tag">Growth</span>
+      <span class="tag">Python</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Power BI</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="section-title">Bridging data,<br>people, and product</div>
+  <p class="section-sub">Industrial & Systems Engineering student at SJSU with a passion for applying analytical thinking to real business problems.</p>
+  <div class="about-grid">
+    <div class="about-copy">
+      <p>I'm a sophomore at San Jose State University studying <strong>Industrial & Systems Engineering</strong>, with hands-on experience across product strategy, growth consulting, and operations management.</p>
+      <p>I've had the opportunity to work with companies like <strong>Adobe, Amazon, and Quizlet</strong>, where I've built KPI frameworks, analyzed large-scale datasets, and shipped a React-based product feature — all before finishing my sophomore year.</p>
+      <p>I'm passionate about using <strong>data-driven thinking</strong> to solve ambiguous problems, whether that's designing a CRM system for a startup, identifying SEO opportunities for an edtech leader, or leading a team of consultants at SJSU's MIS Association.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="info-row">
+        <span class="label">University</span>
+        <span class="value">San Jose State University</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Degree</span>
+        <span class="value">B.S. Industrial & Systems Engineering</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Expected Graduation</span>
+        <span class="value">June 2028</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Location</span>
+        <span class="value">San Jose, California</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Seeking</span>
+        <span class="value">Product Management · Consulting · Marketing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work Experience</div>
+  <div class="section-title">Where I've created<br>impact</div>
+  <p class="section-sub">From early-stage startups to Fortune 500 externships — here's what I've been building.</p>
+
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">Digital Product Strategy Consultant</div>
+        <div class="exp-company">Adobe</div>
+        <ul class="exp-bullets">
+          <li>Conducted user research with 1,000+ survey respondents using Qualtrics, generating actionable insights to inform product recommendations.</li>
+          <li>Built a comprehensive KPI framework covering adoption, friction points, feature usage, and NPS to quantify user value and optimization opportunities.</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-date">Feb 2026 – Present</span>
+        <div class="exp-location">San Jose, CA</div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">Operational & People Analytics Extern</div>
+        <div class="exp-company">Amazon / Extern</div>
+        <ul class="exp-bullets">
+          <li>Used Python to clean, preprocess, and analyze large-scale employee feedback datasets with sentiment analysis and thematic coding.</li>
+          <li>Built structured workflows to transform qualitative feedback into actionable data, creating visualizations and summary reports for operations strategy.</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-date">Feb 2026 – Present</span>
+        <div class="exp-location">Remote</div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">Growth & CRM Strategy Consulting Director</div>
+        <div class="exp-company">Samepage.AI</div>
+        <ul class="exp-bullets">
+          <li>Designed an implementation-ready HubSpot CRM framework with 20+ custom fields, segmentation logic, and lifecycle stages for a startup.</li>
+          <li>Mapped a 6-stage customer funnel (Awareness → Advocacy) defining 20+ touchpoints, KPIs, and cross-functional responsibilities.</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-date">Jan 2023 – Present</span>
+        <div class="exp-location">San Jose, CA</div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">SEO Consultant</div>
+        <div class="exp-company">Quizlet</div>
+        <ul class="exp-bullets">
+          <li>Evaluated competitive positioning, user search behavior, and edtech trends, identifying opportunities projected to improve organic discoverability by ~10–20%.</li>
+          <li>Co-led design, build, and ship of a React-based game mode ("Time Clash"), translating research into product requirements and delivering an MVP.</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-date">Sep 2025 – Dec 2025</span>
+        <div class="exp-location">San Francisco, CA</div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">Business Operations Associate</div>
+        <div class="exp-company">Hoopsphere Basketball Academy</div>
+        <ul class="exp-bullets">
+          <li>Redesigned internal workflows and built automation systems within Monday.com to streamline administrative operations.</li>
+          <li>Monitored performance across enrollment, attendance, payment, and scheduling; delivered reporting to support leadership decision-making.</li>
+        </ul>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-date">Jan 2023 – Present</span>
+        <div class="exp-location">Fremont, CA</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects & Leadership</div>
+  <div class="section-title">Selected work</div>
+  <p class="section-sub">A mix of consulting deliverables, product builds, and leadership initiatives.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">🔍</div>
+      <div class="project-company">Adobe</div>
+      <div class="project-title">Product KPI Framework</div>
+      <p class="project-desc">Designed an end-to-end KPI framework from scratch — analyzing 1,000+ Qualtrics survey responses to surface adoption trends, friction points, and NPS drivers. Delivered data-backed product strategy recommendations.</p>
+      <div class="project-tags">
+        <span class="ptag">Qualtrics</span>
+        <span class="ptag">User Research</span>
+        <span class="ptag">Product Strategy</span>
+        <span class="ptag">KPI Design</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🎮</div>
+      <div class="project-company">Quizlet</div>
+      <div class="project-title">Time Clash Game Mode</div>
+      <p class="project-desc">Co-led the full product cycle from research to MVP — evaluating SEO positioning and edtech trends, then building a React-based game mode ("Time Clash") designed to increase user engagement and session depth.</p>
+      <div class="project-tags">
+        <span class="ptag">React.js</span>
+        <span class="ptag">SEO Strategy</span>
+        <span class="ptag">Product Management</span>
+        <span class="ptag">MVP Development</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🗂️</div>
+      <div class="project-company">Samepage.AI</div>
+      <div class="project-title">HubSpot CRM Architecture</div>
+      <p class="project-desc">Built a full CRM framework with 20+ custom fields, lifecycle stages, and a 6-stage customer funnel (Awareness → Advocacy) — giving a growing startup a scalable, implementation-ready operational backbone.</p>
+      <div class="project-tags">
+        <span class="ptag">HubSpot CRM</span>
+        <span class="ptag">Funnel Design</span>
+        <span class="ptag">Growth Strategy</span>
+        <span class="ptag">Operations</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <div class="project-company">Amazon / Extern</div>
+      <div class="project-title">Employee Feedback Analytics</div>
+      <p class="project-desc">Applied Python-based sentiment analysis and thematic coding to large-scale employee feedback datasets. Produced structured reports and visualizations to support Amazon's people operations strategy.</p>
+      <div class="project-tags">
+        <span class="ptag">Python</span>
+        <span class="ptag">Sentiment Analysis</span>
+        <span class="ptag">Data Visualization</span>
+        <span class="ptag">People Analytics</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🏛️</div>
+      <div class="project-company">SJSU MISA</div>
+      <div class="project-title">Technical Consulting Group</div>
+      <p class="project-desc">Leading a team of 8 student consultants on client-facing projects — managing timelines, deliverables, and stakeholder communication while delivering data-driven solutions using SQL, Power BI, and CRM tools.</p>
+      <div class="project-tags">
+        <span class="ptag">SQL</span>
+        <span class="ptag">Power BI</span>
+        <span class="ptag">Team Leadership</span>
+        <span class="ptag">Client Consulting</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">💰</div>
+      <div class="project-company">SJSU Sahaara</div>
+      <div class="project-title">Financial & Revenue Operations</div>
+      <p class="project-desc">Managed $50K+ in organizational finances as Treasurer — overseeing budgeting, reimbursements, and revenue initiatives including fundraisers and partnerships that raised $15K+ to fund team travel and production.</p>
+      <div class="project-tags">
+        <span class="ptag">Financial Management</span>
+        <span class="ptag">Revenue Strategy</span>
+        <span class="ptag">Event Operations</span>
+        <span class="ptag">Budgeting</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom: 4rem;">
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-heading">Let's build<br>something <em>great</em><br>together.</div>
+      <p class="contact-sub">Currently open to product management, consulting, and marketing opportunities. Always happy to connect.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Karthikeyaalt@gmail.com" class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">Karthikeyaalt@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:5107388006" class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-value">510-738-8006</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/karthikeya-mandusamanu/" target="_blank" class="contact-item">
+        <div class="contact-item-icon">💼</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-value">karthikeya-mandusamanu</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Karthikeya Mandusamanu · San Jose, California
+</footer>
+
+</body>
+</html>
